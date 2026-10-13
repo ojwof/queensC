@@ -230,7 +230,8 @@ if (ADMIN_PROXY_TARGET) {
 // Cache rules, so Hostinger's CDN and browsers can keep the files (with Express's default
 // max-age=0 every visitor pulled the full bundle from this process): Vite's /assets/ files have
 // a content hash in their names, so they never change and are cached for a year; index.html is
-// always re-checked so a new deploy shows up at once; other files (logos, photos) for an hour.
+// always re-checked so a new deploy shows up at once; logos and photos (/brand, /images) for 30
+// days (give a replaced file a new name or a ?v= query); anything else for an hour.
 const distDir = path.join(process.cwd(), 'dist');
 
 // Admin console at ADMIN_PATH (/private-user/): the same index.html as the public site, and
@@ -257,6 +258,7 @@ app.use(express.static(distDir, {
     const rel = path.relative(distDir, filePath).split(path.sep).join('/');
     if (rel.startsWith('assets/')) res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
     else if (rel.endsWith('.html')) res.setHeader('Cache-Control', 'no-cache');
+    else if (rel.startsWith('images/') || rel.startsWith('brand/')) res.setHeader('Cache-Control', 'public, max-age=2592000');
     else res.setHeader('Cache-Control', 'public, max-age=3600');
   },
 }));

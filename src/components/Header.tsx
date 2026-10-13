@@ -15,7 +15,7 @@ import {
   Headphones,
   HelpCircle
 } from 'lucide-react';
-import { COMPANY, LOGO, LOGO_ALT } from '../config/brand';
+import { COMPANY, LOGO_ALT, LOGO_WEB, LOGO_WEB_HEIGHT, LOGO_WEB_WIDTH } from '../config/brand';
 import { useCompanyContact } from '../utils/useCompanyContact';
 import { useEscapeKey } from '../utils/useEscapeKey';
 import './Header.css';
@@ -108,7 +108,9 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Brand Logo */}
           <a href="#/" className="ngf-logo-wrap" onClick={goHome} aria-label={`${COMPANY} home`}>
             <img
-              src={LOGO}
+              src={LOGO_WEB}
+              width={LOGO_WEB_WIDTH}
+              height={LOGO_WEB_HEIGHT}
               alt={LOGO_ALT}
               className="ngf-brand-logo-img"
               onError={(e) => {
@@ -216,7 +218,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Drawer Header with Logo and Close */}
             <div className="drawer-header">
               <a href="#/" className="drawer-logo" onClick={goHome} aria-label={`${COMPANY} home`}>
-                <img src={LOGO} alt={LOGO_ALT} className="drawer-logo-img" />
+                <img src={LOGO_WEB} width={LOGO_WEB_WIDTH} height={LOGO_WEB_HEIGHT} alt={LOGO_ALT} className="drawer-logo-img" loading="lazy" />
               </a>
               <button
                 type="button"

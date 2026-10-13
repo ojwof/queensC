@@ -2,18 +2,9 @@ import { useState, useEffect, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
-import { TrackPage } from './pages/TrackPage';
-import { TrackResultPage } from './pages/TrackResultPage';
-import { PublicQuoteResultPage } from './pages/PublicQuoteResultPage';
-import { ServicesPage } from './pages/ServicesPage';
-import { QuotePage } from './pages/QuotePage';
-import { ShipPage } from './pages/ShipPage';
-import { AboutPage } from './pages/AboutPage';
-import { ContactPage } from './pages/ContactPage';
-import { HelpPage } from './pages/HelpPage';
-import { LegalPage } from './pages/LegalPage';
-import { LocationsPage } from './pages/LocationsPage';
-import { NotFoundPage } from './pages/NotFoundPage';
+// Every other public page is its own chunk, fetched when it opens, so the landing page only
+// downloads its own code. Their stylesheets stay in the main bundle, in the original order.
+import './pages/pageStyles';
 // The admin console's code is its own chunk, fetched only when the admin page opens, so public
 // visitors never download it (MOTION_3D_SPEC §2). Its stylesheets stay in the main bundle, in
 // their original place (see admin/styles.ts); that also keeps the `admin-login-shell`
@@ -32,6 +23,19 @@ const loadAdminApp = () => import('./admin/AdminApp');
 const loadAdminLogin = () => import('./admin/AdminLogin');
 const AdminApp = lazy(() => loadAdminApp().then((m) => ({ default: m.AdminApp })));
 const AdminLogin = lazy(() => loadAdminLogin().then((m) => ({ default: m.AdminLogin })));
+
+const TrackPage = lazy(() => import('./pages/TrackPage').then((m) => ({ default: m.TrackPage })));
+const TrackResultPage = lazy(() => import('./pages/TrackResultPage').then((m) => ({ default: m.TrackResultPage })));
+const PublicQuoteResultPage = lazy(() => import('./pages/PublicQuoteResultPage').then((m) => ({ default: m.PublicQuoteResultPage })));
+const ServicesPage = lazy(() => import('./pages/ServicesPage').then((m) => ({ default: m.ServicesPage })));
+const QuotePage = lazy(() => import('./pages/QuotePage').then((m) => ({ default: m.QuotePage })));
+const ShipPage = lazy(() => import('./pages/ShipPage').then((m) => ({ default: m.ShipPage })));
+const AboutPage = lazy(() => import('./pages/AboutPage').then((m) => ({ default: m.AboutPage })));
+const ContactPage = lazy(() => import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })));
+const HelpPage = lazy(() => import('./pages/HelpPage').then((m) => ({ default: m.HelpPage })));
+const LegalPage = lazy(() => import('./pages/LegalPage').then((m) => ({ default: m.LegalPage })));
+const LocationsPage = lazy(() => import('./pages/LocationsPage').then((m) => ({ default: m.LocationsPage })));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })));
 
 const KNOWN_PAGES = ['home', 'track', 'services', 'quote', 'ship', 'about', 'help', 'contact', 'legal', 'locations', 'admin'];
 
@@ -447,7 +451,7 @@ function MainAppContent() {
         {isTrackSearching ? (
           <TrackingLoadingScreen query={trackSearchQuery} />
         ) : (
-          <>
+          <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
         {currentPage === 'home' && (
           <HomePage
             onTrack={handleTrackShipment}
@@ -514,7 +518,7 @@ function MainAppContent() {
         {currentPage === 'not-found' && (
           <NotFoundPage onNavigate={handleNavigate} />
         )}
-          </>
+          </Suspense>
         )}
       </main>
 
