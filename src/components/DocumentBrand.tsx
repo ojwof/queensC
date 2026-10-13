@@ -1,6 +1,6 @@
 // Shared parts of every generated document (docs/CONTENT.md §11): the brand header block, the
 // tracking ID line, the tamper-evident pouch line and the legal footer. Used by the admin
-// Document Center papers (which become the PDFs) and by ShipmentDocuments.
+// Document Center papers (which become the PDFs).
 import React from 'react';
 import { COMPANY_SHORT, DOMAIN, LEGAL_NAME, LOGO, LOGO_ALT } from '../config/brand';
 import { useCompanyContact } from '../utils/useCompanyContact';

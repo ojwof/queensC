@@ -15,8 +15,8 @@ export const SITE_IMAGES = {
   'services-hero': { width: 2400, height: 1000, widths: [640, 1024, 1600, 2400] },
   'about-hero': { width: 2400, height: 1000, widths: [640, 1024, 1600, 2400] },
   'about-compliance': { width: 2400, height: 800, widths: [640, 1024, 1600, 2400] },
-  'ship-hero': { width: 2400, height: 1350, widths: [640, 1024, 1600, 2400] },
-  'quote-result-hero': { width: 2400, height: 1350, widths: [640, 1024, 1600, 2400] },
+  'ship-hero': { width: 1600, height: 900, widths: [1024, 1600] },
+  'quote-result-hero': { width: 1600, height: 900, widths: [1024, 1600] },
   'service-priority-express': { width: 340, height: 340, widths: [340, 640, 1024, 1400] },
   'service-freight-linehaul': { width: 340, height: 340, widths: [340, 640, 1024, 1400] },
   'service-vehicle-transport': { width: 340, height: 340, widths: [340] },
@@ -28,7 +28,6 @@ export const SITE_IMAGES = {
   'track-result-vehicle': { width: 340, height: 340, widths: [340, 640, 1024, 1400] },
   'about-operations': { width: 340, height: 340, widths: [340, 640, 1024, 1400] },
   'about-story': { width: 340, height: 340, widths: [340, 640, 1024, 1400] },
-  'contact-team': { width: 340, height: 340, widths: [340, 640, 1024, 1400] },
   'about-team': { width: 340, height: 340, widths: [340, 640] },
 } satisfies Record<string, SiteImageInfo>;
 

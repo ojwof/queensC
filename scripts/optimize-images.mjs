@@ -279,7 +279,8 @@ async function buildBrand() {
 // Photos
 // ---------------------------------------------------------------------------------------------
 // kind 'card' = fixed CARD_SIZE square (plus 640 when the source allows it).
-// kind 'hero' = keeps the given aspect ratio, widths from STEP_WIDTHS up to the source width (or `maxWidth`).
+// kind 'hero' = keeps the given aspect ratio, widths from STEP_WIDTHS up to the source width (or `maxWidth`);
+// `widths` limits a hero to the step widths its page actually uses.
 // free-stock/* are full-resolution Pexels originals (see images/free-stock/SOURCES.md); each hero
 // slot has its own photo. Outputs stay capped at STEP_WIDTHS / CARD_STEP_SIZES.
 const PHOTOS = [
@@ -296,8 +297,8 @@ const PHOTOS = [
   { name: 'about-compliance', src: 'free-stock/about-compliance.jpg', kind: 'hero', aspect: 3 / 1 },
   // CSS background heroes (ShipPage.css, PublicQuoteResultPage.css) reference the 1024 and 1600 widths.
   // Rippled sea compresses poorly; it sits under a dark overlay, so lower quality keeps 1600w under 250 KB.
-  { name: 'ship-hero', src: 'free-stock/ship-hero.jpg', kind: 'hero', aspect: 16 / 9, quality: { webp: 66, jpeg: 70 } },
-  { name: 'quote-result-hero', src: 'free-stock/quote-result-hero.jpg', kind: 'hero', aspect: 16 / 9 },
+  { name: 'ship-hero', src: 'free-stock/ship-hero.jpg', kind: 'hero', aspect: 16 / 9, quality: { webp: 66, jpeg: 70 }, maxWidth: 1600, widths: [1024, 1600] },
+  { name: 'quote-result-hero', src: 'free-stock/quote-result-hero.jpg', kind: 'hero', aspect: 16 / 9, maxWidth: 1600, widths: [1024, 1600] },
   { name: 'service-priority-express', src: 'free-stock/service-priority-express.jpg', kind: 'card' },
   { name: 'service-freight-linehaul', src: 'free-stock/service-freight-linehaul.jpg', kind: 'card' },
   { name: 'service-vehicle-transport', src: 'free-cc0/service-vehicle-transport.webp', kind: 'card' },
@@ -309,7 +310,6 @@ const PHOTOS = [
   { name: 'track-result-vehicle', src: 'free-stock/track-result-vehicle.jpg', kind: 'card' },
   { name: 'about-operations', src: 'free-pexels/about-operations.jpg', kind: 'card' },
   { name: 'about-story', src: 'free-stock/about-story.jpg', kind: 'card' },
-  { name: 'contact-team', src: 'free-stock/contact-team.jpg', kind: 'card' },
   // Shown as a 72 px thumbnail: crop tight on the face.
   { name: 'about-team', src: 'free-pexels/about-team.jpg', kind: 'card', crop: { left: 950, top: 80, width: 900, height: 900 } },
 ];
@@ -349,7 +349,7 @@ async function buildPhotos() {
       // largest step width (UHD originals are source files only), then the step widths below it.
       const cropW = Math.min(srcW, Math.floor(srcH * p.aspect));
       const maxW = Math.min(cropW, p.maxWidth ?? STEP_WIDTHS[STEP_WIDTHS.length - 1]);
-      const widths = STEP_WIDTHS.filter(w => w <= maxW);
+      const widths = (p.widths ?? STEP_WIDTHS).filter(w => w <= maxW);
       if (!widths.includes(maxW) && (widths.length === 0 || maxW - widths[widths.length - 1] > 200)) widths.push(maxW);
       for (const w of widths) {
         await writeVariants(factory, p.name, w, Math.round(w / p.aspect), p.position, p.quality);

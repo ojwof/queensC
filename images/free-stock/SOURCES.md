@@ -23,7 +23,7 @@ Each photo was checked at full size for readable company names, logos or livery 
 | service-priority-express.jpg | service-priority-express | 3913×2743 | https://www.pexels.com/photo/open-platform-in-airplane-on-airport-16804254/ | Joerg Mangelsen | Pexels License | 2026-10-02 |
 | service-freight-linehaul.jpg | service-freight-linehaul | 2940×4413 | https://www.pexels.com/photo/aerial-shot-of-a-freighter-with-cargo-containers-8777703/ | Fatih Turan | Pexels License | 2026-10-02 |
 | track-result-vehicle.jpg | track-result-vehicle | 3402×2551 | https://www.pexels.com/photo/a-truck-on-the-road-near-the-mountain-14419672/ | Mehmet Turgut Kirkgoz | Pexels License | 2026-10-02 |
-| contact-team.jpg | contact-team | 5554×3703 | https://www.pexels.com/photo/man-in-white-button-up-shirt-and-black-cap-holding-a-clipboard-6169652/ | Tima Miroshnichenko | Pexels License | 2026-10-02 |
+| contact-team.jpg | (not used; outputs removed 2026-10-13) | 5554×3703 | https://www.pexels.com/photo/man-in-white-button-up-shirt-and-black-cap-holding-a-clipboard-6169652/ | Tima Miroshnichenko | Pexels License | 2026-10-02 |
 | industry-healthcare.jpg | industry-healthcare | 4160×6240 | https://www.pexels.com/photo/hands-in-plastic-gloves-holding-a-box-with-vaccines-9893851/ | Ron Lach | Pexels License | 2026-10-02 |
 | industry-automotive.jpg | industry-automotive | 5264×6655 | https://www.pexels.com/photo/large-parking-with-cars-of-manufacture-5982900/ | Tom Fisk | Pexels License | 2026-10-02 |
 | industry-ecommerce.jpg | industry-ecommerce | 5283×3522 | https://www.pexels.com/photo/parcels-inside-a-delivery-van-6170458/ | Tima Miroshnichenko | Pexels License | 2026-10-02 |
