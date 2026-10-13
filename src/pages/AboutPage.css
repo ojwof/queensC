@@ -278,7 +278,7 @@
   border: 1px solid var(--ngf-slate-300);
 }
 
-.pillar-item h4 {
+.pillar-item h3 {
   font-size: 0.9375rem;
   font-weight: 800;
   color: var(--ngf-ink-900);
@@ -344,7 +344,7 @@
   animation: pulse-dot 2s infinite ease-in-out;
 }
 
-.about-floating-badge h4 {
+.about-floating-badge h3 {
   font-size: 1.0625rem;
   font-weight: 800;
   color: var(--ngf-white);
@@ -932,7 +932,7 @@
     bottom: 0.875rem;
     padding: 0.875rem 1rem;
   }
-  .about-floating-badge h4 {
+  .about-floating-badge h3 {
     font-size: 0.9375rem;
   }
   .about-floating-badge p {

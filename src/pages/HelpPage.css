@@ -17,12 +17,21 @@
    ============================================================ */
 .ngf-help-hero {
   position: relative;
-  background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&auto=format&fit=crop&q=85');
+  /* Self-hosted copy of the Unsplash photo: 1600 here, 1024 on phones. */
+  background-image: url('/images/site/help-hero-1600.jpg');
+  background-image: image-set(url('/images/site/help-hero-1600.webp') type('image/webp'), url('/images/site/help-hero-1600.jpg') type('image/jpeg'));
   background-size: cover;
   background-position: center 30%;
   color: var(--ngf-white);
   padding: 5.5rem 0 6rem;
   overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .ngf-help-hero {
+    background-image: url('/images/site/help-hero-1024.jpg');
+    background-image: image-set(url('/images/site/help-hero-1024.webp') type('image/webp'), url('/images/site/help-hero-1024.jpg') type('image/jpeg'));
+  }
 }
 
 .help-hero-bg-overlay {
@@ -286,7 +295,7 @@
   border: 1px solid #fde68a;
 }
 
-.help-pillar-card h3 {
+.help-pillar-card h2 {
   font-size: 1.1875rem;
   font-weight: 800;
   color: var(--ngf-ink-900);

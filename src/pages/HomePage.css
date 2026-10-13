@@ -462,24 +462,35 @@
   z-index: 1;
 }
 
-.pipeline-laser-beam::after {
-  content: '';
+/* The pulse travels along the beam with a transform (no layout per frame): the track spans the beam,
+   so translateX(100%) equals the beam's width, and the pill sits at the track's left edge. */
+.pipeline-laser-track {
   position: absolute;
   top: -2px;
+  left: 0;
+  width: 100%;
+  height: 7px;
+  pointer-events: none;
+  animation: laserPulse 4s infinite linear;
+}
+
+.pipeline-laser-track::after {
+  content: '';
+  position: absolute;
+  top: 0;
   left: 0;
   width: 40px;
   height: 7px;
   background: var(--ngf-accent-500);
   border-radius: 9999px;
   box-shadow: 0 0 12px var(--ngf-accent-500);
-  animation: laserPulse 4s infinite linear;
 }
 
 @keyframes laserPulse {
-  0% { left: 0%; opacity: 0; }
+  0% { transform: translateX(0%); opacity: 0; }
   10% { opacity: 1; }
   90% { opacity: 1; }
-  100% { left: 100%; opacity: 0; }
+  100% { transform: translateX(100%); opacity: 0; }
 }
 
 .pipeline-nodes-row {
@@ -1051,6 +1062,21 @@
   color: var(--ngf-white);
 }
 
+/* Small red text on Ink uses Accent 400 for 4.5:1 contrast (BRAND_GUIDE §5); !important beats the
+   shared .text-accent utility. */
+.corp-services-section .section-eyebrow,
+.corp-hubs-map-section .section-eyebrow {
+  color: var(--ngf-accent-400) !important;
+}
+
+.corp-hubs-map-section .btn-why-readmore {
+  color: var(--ngf-accent-400);
+}
+
+.corp-hubs-map-section .btn-why-readmore:hover {
+  color: var(--ngf-white);
+}
+
 .hubs-map-header {
   display: flex;
   align-items: flex-end;
@@ -1334,7 +1360,7 @@
   flex-shrink: 0;
 }
 
-.trust-pillar-card h4 {
+.trust-pillar-card h3 {
   font-size: 0.9375rem;
   font-weight: 700;
   color: var(--ngf-ink-900);
@@ -1397,7 +1423,7 @@
 
 .b-spec small {
   font-size: 0.75rem;
-  color: var(--ngf-slate-500);
+  color: var(--ngf-slate-600);
   font-weight: 600;
 }
 
@@ -1481,21 +1507,34 @@
   overflow: hidden;
 }
 
+/* Same sweep as a transform: the element spans the box (so translateX(5%) = left 5%) and the
+   line is drawn at its left edge. */
 .laser-sweep-line {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 2px;
-  background: rgba(var(--ngf-accent-rgb), 0.85);
-  box-shadow: 0 0 8px var(--ngf-accent-500);
+  left: 0;
+  width: 100%;
+  pointer-events: none;
   animation: laserSweep 2.5s infinite ease-in-out;
 }
 
+.laser-sweep-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: rgba(var(--ngf-accent-rgb), 0.85);
+  box-shadow: 0 0 8px var(--ngf-accent-500);
+}
+
 @keyframes laserSweep {
-  0% { left: 5%; opacity: 0; }
+  0% { transform: translateX(5%); opacity: 0; }
   20% { opacity: 1; }
   80% { opacity: 1; }
-  100% { left: 95%; opacity: 0; }
+  100% { transform: translateX(95%); opacity: 0; }
 }
 
 .thermal-footer {

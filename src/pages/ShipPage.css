@@ -356,7 +356,7 @@
   flex-shrink: 0;
 }
 
-.sec-header h3 {
+.sec-header h2 {
   font-size: 1.375rem;
   font-weight: 800;
   color: var(--ngf-ink-900);
@@ -1062,7 +1062,7 @@
   margin-bottom: 2rem;
 }
 
-.confirm-instructions-card h4 {
+.confirm-instructions-card h3 {
   font-size: 0.9375rem;
   font-weight: 800;
   color: var(--ngf-ink-900);
@@ -1137,7 +1137,7 @@
   margin-bottom: 1.25rem;
 }
 
-.p-step-card h4 {
+.p-step-card h3 {
   font-size: 1.125rem;
   font-weight: 800;
   color: var(--ngf-ink-900);
@@ -1273,7 +1273,7 @@
   .sec-icon {
     display: none; /* Hide 44px circle so title aligns neatly */
   }
-  .sec-header h3 {
+  .sec-header h2 {
     font-size: 1.125rem;
     margin-bottom: 0.125rem;
   }

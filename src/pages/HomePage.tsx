@@ -448,7 +448,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
           </div>
 
           <div className="kinetic-pipeline-container">
-            <div className="pipeline-laser-beam" />
+            <div className="pipeline-laser-beam"><span className="pipeline-laser-track" aria-hidden="true" /></div>
             <div className="pipeline-nodes-row">
               {STEPS.map((step, i) => {
                 const num = String(i + 1).padStart(2, '0');
@@ -754,7 +754,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
               <div key={tile.title} className="trust-pillar-card">
                 <div className="trust-pillar-icon">{tile.icon}</div>
                 <div>
-                  <h4>{tile.title}</h4>
+                  <h3>{tile.title}</h3>
                   <p>{tile.body}</p>
                 </div>
               </div>

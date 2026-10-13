@@ -212,7 +212,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
             <div className="admin-review-info-box">
               <div className="info-box-head">
                 <ListChecks size={18} className="text-accent flex-shrink-0" />
-                <h4>What happens next</h4>
+                <h3>What happens next</h3>
               </div>
               <ol className="quote-next-steps">
                 {QUOTE_NEXT_STEPS.map((step) => <li key={step}>{step}</li>)}
@@ -534,7 +534,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
             {/* Side card (CONTENT §7.1) */}
             <div className="quote-sidebar-col">
               <div className="quote-policy-card">
-                <h3>Straight answers, no surprises.</h3>
+                <h2>Straight answers, no surprises.</h2>
                 <p>
                   Your quote includes the service, estimated transit time and every known charge, so the price you accept is the price you pay (duties and taxes as applicable).
                 </p>

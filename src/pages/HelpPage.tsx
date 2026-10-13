@@ -97,7 +97,7 @@ export const HelpPage: React.FC<HelpPageProps> = ({ onNavigate }) => {
           {QUICK_LINKS.map(({ page, title, icon: Icon, tone }) => (
             <button key={page} type="button" className="help-pillar-card" onClick={() => onNavigate(page)}>
               <div className={`pillar-icon ${tone}`}><Icon size={24} /></div>
-              <h3>{title}</h3>
+              <h2>{title}</h2>
               <span className="pillar-action-link" aria-hidden="true"><ArrowRight size={15} /></span>
             </button>
           ))}

@@ -140,7 +140,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, initialGat
                 <div className="success-icon-badge">
                   <CheckCircle2 size={48} className="text-emerald" />
                 </div>
-                <h3>Message received.</h3>
+                <h2>Message received.</h2>
 
                 <div className="ticket-summary-box">
                   <p>
@@ -173,7 +173,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, initialGat
             ) : (
               <form onSubmit={handleSubmit} className="contact-form">
                 <div className="form-header-row">
-                  <h3>Send us a message</h3>
+                  <h2>Send us a message</h2>
                 </div>
 
                 {formError && (

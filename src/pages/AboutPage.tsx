@@ -170,7 +170,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   <div key={item.title} className="pillar-item">
                     <div className={`pillar-icon-box ${item.tone}`}>{item.icon}</div>
                     <div>
-                      <h4>{item.title}</h4>
+                      <h3>{item.title}</h3>
                       <p>{item.body}</p>
                     </div>
                   </div>
@@ -192,7 +192,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                     <span className="live-pulse-dot" />
                     <span className="font-mono text-xs font-bold text-white">ROUND-THE-CLOCK OPERATIONS</span>
                   </div>
-                  <h4>24/7 Global operations desk</h4>
+                  <h3>24/7 Global operations desk</h3>
                   <p>Our desk follows the sun across time zones.</p>
                 </div>
               </div>

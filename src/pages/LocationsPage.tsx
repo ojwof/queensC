@@ -59,7 +59,7 @@ export const LocationsPage: React.FC<LocationsPageProps> = ({ onNavigate }) => {
         <div className="locations-map-feature animate-fade-in">
           <div className="map-card-header">
             <div className="map-badge-pill font-mono">GLOBAL NETWORK</div>
-            <h3>Gateways & scheduled trade lanes</h3>
+            <h2>Gateways & scheduled trade lanes</h2>
           </div>
           <FacilityNetworkMap onContactGateway={contactGateway} />
         </div>
@@ -107,7 +107,7 @@ export const LocationsPage: React.FC<LocationsPageProps> = ({ onNavigate }) => {
                         type="button"
                         className="gateway-contact-btn"
                         onClick={() => contactGateway(gw.code)}
-                        aria-label={`Contact the ${gw.city} gateway`}
+                        aria-label={`Contact this gateway: ${gw.city}`}
                       >
                         <Mail size={15} />
                         <span>Contact this gateway</span>

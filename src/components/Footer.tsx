@@ -11,7 +11,7 @@ import {
   Youtube,
   ChevronRight
 } from 'lucide-react';
-import { COMPANY_SHORT, LEGAL_NAME, LOGO_ALT, LOGO_WHITE, SOCIAL, SocialNetwork, TAGLINE } from '../config/brand';
+import { COMPANY_SHORT, LEGAL_NAME, LOGO_ALT, LOGO_WEB_HEIGHT, LOGO_WEB_WIDTH, LOGO_WHITE_WEB, SOCIAL, SocialNetwork, TAGLINE } from '../config/brand';
 import { useCompanyContact } from '../utils/useCompanyContact';
 import './Footer.css';
 
@@ -109,7 +109,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <Globe size={24} />
               </div>
               <div className="ngf-trust-info">
-                <h4>Worldwide Coverage</h4>
+                <h3>Worldwide Coverage</h3>
                 <p>Air, ocean and road, connected.</p>
               </div>
             </div>
@@ -119,7 +119,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <Clock size={24} />
               </div>
               <div className="ngf-trust-info">
-                <h4>Live Milestones</h4>
+                <h3>Live Milestones</h3>
                 <p>Every hand-off scanned and time-stamped.</p>
               </div>
             </div>
@@ -129,7 +129,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <Layers size={24} />
               </div>
               <div className="ngf-trust-info">
-                <h4>Piece-Level Labels</h4>
+                <h3>Piece-Level Labels</h3>
                 <p>Every carton individually barcoded.</p>
               </div>
             </div>
@@ -161,7 +161,10 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="ngf-pro-brand-col">
               <a className="ngf-pro-footer-logo" href={hrefFor('home')} onClick={go('home')}>
                 <img
-                  src={LOGO_WHITE}
+                  src={LOGO_WHITE_WEB}
+                  width={LOGO_WEB_WIDTH}
+                  height={LOGO_WEB_HEIGHT}
+                  loading="lazy"
                   alt={LOGO_ALT}
                   className="ngf-pro-footer-logo-img"
                 />
