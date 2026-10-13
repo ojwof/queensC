@@ -677,7 +677,7 @@ The text below is rendered from `src/data/legalDocs.ts`; change both together. P
    - ngf_live_shipment_stream: the latest update for a shipment you are viewing, so other open tabs stay in step.
    You can clear these at any time in your browser settings.
 3. *Other services our pages use.*
-   Our pages load map tiles from Esri (ArcGIS) and use OpenStreetMap Nominatim and OSRM to look up addresses and routes. Fonts and photos are served from our own site. These services receive your IP address when your browser contacts them.
+   Our pages load map tiles from Esri (ArcGIS) and use OpenStreetMap Nominatim and OSRM to look up addresses and routes. The live chat window on our public pages is provided by Smartsupp, which also receives the messages you type in it. Fonts and photos are served from our own site. These services receive your IP address when your browser contacts them.
 
 **Accessibility**
 1. *Our commitment.*

@@ -249,7 +249,7 @@ export function legalDocs({ email, address }: LegalContact): LegalDoc[] {
         {
           heading: 'Other services our pages use',
           body: [
-            'Our pages load map tiles from Esri (ArcGIS) and use OpenStreetMap Nominatim and OSRM to look up addresses and routes. Fonts and photos are served from our own site. These services receive your IP address when your browser contacts them.'
+            'Our pages load map tiles from Esri (ArcGIS) and use OpenStreetMap Nominatim and OSRM to look up addresses and routes. The live chat window on our public pages is provided by Smartsupp, which also receives the messages you type in it. Fonts and photos are served from our own site. These services receive your IP address when your browser contacts them.'
           ]
         }
       ]
