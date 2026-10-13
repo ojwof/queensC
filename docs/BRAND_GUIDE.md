@@ -102,7 +102,7 @@ Keep the current, well-performing trio (already loaded in `index.html`):
 
 - Headings: tight tracking (-0.02em), line-height 1.1.
 - Body: 16px min (17–18px on marketing pages), line-height 1.6.
-- Add `font-display: swap` (already present via Google Fonts `display=swap`). Consider self-hosting for speed.
+- Fonts are self-hosted (`src/assets/fonts/`, Latin and Latin Extended WOFF2, `font-display: swap`); see the README there.
 
 ## 6. Logo usage
 
@@ -111,7 +111,9 @@ Keep the current, well-performing trio (already loaded in `index.html`):
   outlines around the letters, which touch it) is keyed out by the script.
   `scripts/optimize-images.mjs --brand` builds the files in `Public/brand/`: `logo.png` (full colour), `logo-white.png`
   (dark surfaces: the black parts turned white, red kept), `mark.png` (the red globe with its orbit arrow), `favicon.png`, `favicon-16.png`, `favicon-32.png`, `icon-192.png`,
-  `icon-maskable-512.png`, `apple-touch-icon.png` and `og-image.jpg` (1200×630).
+  `icon-maskable-512.png`, `apple-touch-icon.png` and `og-image.jpg` (1200×630). The site header and footer use
+  small WebP copies, `logo-web.webp` and `logo-white-web.webp` (346×104, resized from the PNGs with sharp); regenerate them
+  whenever the logo changes, and give them a new name or `?v=` query since `/brand` files are cached for 30 days.
 - Header uses the full-colour logo on light surfaces, the white logo on Ink.
 - Clear space = height of the "Q" around the logo. Minimum width: 110px desktop, 96px mobile.
 - Never stretch, recolour, add shadows, or place on busy photos without an overlay.

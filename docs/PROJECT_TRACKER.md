@@ -100,7 +100,7 @@ labels `QS7K2M9P-01`) · references `QS-TKT-`, `QS-INV-`, `QS-SL-` + 6 digits (q
 - [ ] 5.5 Parallax depth on image sections and page heroes.
 - [ ] 5.6 Animated counters + "How it works" connecting path animation.
 - [ ] 5.7 Track Result: tilted map, animated marker, 3D parcel "passport" card flip.
-- [ ] 5.8 Performance pass: Lighthouse mobile ≥ 85 Performance, ≥ 95 Accessibility; fix regressions.
+- [~] 5.8 Performance pass: Lighthouse mobile ≥ 85 Performance, ≥ 95 Accessibility; fix regressions. *2026-10-13 pass: see measurements below. Accessibility met everywhere except the Locations map markers (#61); mobile Performance on Home 84–88 on an idle machine, needs a re-check on the live domain (PageSpeed Insights).*
 
 ### Performance measurements (5.0, 2026-09-29)
 Production build served by `node dist-server/server/index.js` on localhost (scratch DB). Lighthouse 12.8.2 CLI, default mobile preset (simulated mid-range phone, slow 4G, 4× CPU slowdown), median of 3 runs.
@@ -119,7 +119,16 @@ Production build served by `node dist-server/server/index.js` on localhost (scra
 | Track | 48 → **52** | 98 → 98 | 12.5 → **8.0 s** | 13.9 → **9.3 s** | 345 → **306 ms** | 0.009 → 0.010 |
 | Services | 51 → **52** | 98 → 98 | 12.5 → **7.5 s** | 14.0 → **9.0 s** | 251 → 291 ms | 0.029 → 0.029 |
 
-These figures predate HTTP compression (added later in `server/index.ts`, see Decisions). Open accessibility items for 5.8: red eyebrow/"read more" text on the dark sections (#D3070B on #181818, 3.21:1) and the barcode spec captions (#64748B on #F1F5F9, 4.34:1) need colour decisions.
+These figures predate HTTP compression (added later in `server/index.ts`, see Decisions). ~~Open accessibility items for 5.8: red eyebrow/"read more" text on the dark sections and the barcode spec captions~~ fixed 2026-10-13 (Accent 400 on Ink per BRAND_GUIDE, slate-600 captions).
+
+### Performance measurements (5.8, 2026-10-13)
+Same setup (production build, compression on, Lighthouse 12.8.2). Main JS **707 → 373 kB (191 → 108 kB gzip)**; main CSS byte-identical apart from the intended rules below. The local machine was under heavy load for later runs (Lighthouse CPU benchmark 760–940 vs 1,159 idle), which inflates TBT; desktop figures are the reliable ones.
+
+| Page | Desktop P / A / BP / SEO | Mobile P / A / BP / SEO |
+|---|---|---|
+| Home | 98–100 / 100 / 100 / 100 | 61 → **84–88** (idle machine; 70–74 under load) / 94 → **100** / 100 / 100 |
+| Track, Services, Ship, About, Contact, Help, Legal, Quote | 97–99 / 100 / 100 / 100 | not measured |
+| Locations | 96 / 96 / 100 / 100 (map marker target size, #61) | not measured |
 
 ## Phase 6 — QA & SEO
 - [x] 6.1 Brand sweep = zero. *Re-run 2026-10-12 for the Queens Cargo launch over source, docs, `dist/` and `dist-server/`.*
@@ -171,7 +180,7 @@ Only open items are listed. Numbers are kept stable because code and docs refer 
 | 33 | **Ship booking:** the server's first tracking event for every new shipment reads "Consignment Registered & Barcode Issued … Linear Code 128 barcode assigned"; the Ship page sends a fixed ETA "2-3 Business Days, by 5:00 PM" and facility "{city} Regional Gateway". Confirm the three collection windows and whether Queens Cargo accepts drop-off at a gateway. | 3.7, 3.12 |
 | 34 | **Help [confirm] answers:** same-day cut-off, damage reports "within 7 days" (CONTENT §8.2). Help, Contact and Quote heroes use Unsplash photos. | 3.9, 3.10, 4.2 |
 | 35 | **Contact / Quote reference:** "Average response under 30 minutes" is confirmed for callbacks only; confirm for messages. Quotes keep `QR-YYYY-#####` (the quote link and tracking search depend on `QR`); decide whether quotes get a `QS-` reference format. | 3.6, 3.10 |
-| 37 | **Legal facts for the owner and the lawyer:** {{JURISDICTION}} (governing law names "the country in which Queens Cargo is registered" until known; TODO in `src/data/legalDocs.ts`); dimensional-weight divisor 5000 and 7-day claims window [confirm]; data-retention periods; liability limits; prohibited/restricted items; "we do not sell personal data"; the Cookie Policy lists the real cookie (`ngf.sid`, staff only), the storage keys and third-party services (Esri tiles, Google Fonts, Unsplash, Nominatim, OSRM). | 3.11 |
+| 37 | **Legal facts for the owner and the lawyer:** {{JURISDICTION}} (governing law names "the country in which Queens Cargo is registered" until known; TODO in `src/data/legalDocs.ts`); dimensional-weight divisor 5000 and 7-day claims window [confirm]; data-retention periods; liability limits; prohibited/restricted items; "we do not sell personal data"; the Cookie Policy lists the real cookie (`ngf.sid`, staff only), the storage keys and third-party services (Esri tiles, Nominatim, OSRM; fonts and photos are self-hosted since 2026-10-13). | 3.11 |
 | 38 | **Documents:** no Proof of Delivery or Security Seal Record type yet; Shipping Label, Shipment Receipt and Certificate of Cargo Insurance titles to confirm (CONTENT §11); a shipment created without dimensions stores 12 × 12 × 12 in, which prints on its documents; the PDF is an image (text not selectable). | 3.12 |
 | 39 | **Admin Settings** still shows the U.S. "USDOT & Carrier Authority Number" field with an FMCSA hint. Rename it once you say which registration Queens Cargo shows. `defaultFuelSurchargeRate` 8.5% is in no doc: confirm or clear. | 3.13 |
 | 41 | Public pages depend on some admin stylesheet rules, so the admin CSS stays in the main bundle. Follow-up (no visual change, needs its own parity check): move the shared rules to public styles and drop ~29 kB gzip of admin CSS for visitors. No owner decision needed. | 5.8 |
@@ -187,6 +196,7 @@ Only open items are listed. Numbers are kept stable because code and docs refer 
 | 57 | The Document Center preview closes on a backdrop click but not with Escape. The ETA engine gives an Express Tokyo → São Paulo shipment next-day delivery: confirm the transit rules. | 3.12 |
 | 59 | **Code clean-up after launch (owner to decide):** (a) the unused `ADMIN_PROXY_TARGET` proxy mode in `server/index.ts`, `server/db.ts` and `server/seo.ts` (DEPLOYMENT §4: leave it unset); (b) remove `/api/diag/storage` once persistence is confirmed on Hostinger; (c) `QuoteRequestsView.tsx` still gives quote ID `QR-2026-00124` a "SAMPLE" row style (styling only, no data). | 7, after launch |
 | 60 | **Queens Cargo logo source is a raster with a checkerboard baked in.** Keyed out automatically; the thin white letter outlines are dropped, and a 1 px pinkish taper remains where the crown meets its band (visible only zoomed in on dark). The tagline is ~2 px tall at header size. A transparent or vector original would give cleaner edges and a crisper 16 px favicon. | L.2 |
+| 61 | **Locations map markers fail Lighthouse "target size"** at the world view: neighbouring gateway markers (e.g. London/Rotterdam/Frankfurt) overlap, so each visible tap area is under 24×24 px. The gateway cards below the map offer the same action. Fix needs a design choice (bigger initial zoom, clustering, or larger markers). | 5.8 |
 
 ## Decisions log
 | Date | Decision |
@@ -221,6 +231,7 @@ Only open items are listed. Numbers are kept stable because code and docs refer 
 ## Change log
 | Date | Task | Note |
 |---|---|---|
+| 2026-10-13 | 5.8 Lighthouse pass | Lazy-loaded public pages (CSS kept in the main bundle in the original order via `src/pages/pageStyles.ts`, verified byte-identical); self-hosted fonts (`src/assets/fonts`, OFL) instead of Google Fonts; Unsplash heroes on Quote/Contact/Help/Legal self-hosted (`images/unsplash/SOURCES.md`); Home hero preloaded; 346×104 WebP header/footer logos; 30-day cache for `/brand` and `/images`; `laserSweep`/`laserPulse` animate `transform` instead of `left`; contrast (Accent 400 on Ink, slate-600 captions) and heading-order fixes on Home, footer, Quote, Contact, Help, About, Ship, Locations; Locations contact buttons' accessible name includes the visible text; privacy text no longer lists Google Fonts/Unsplash (CONTENT §13). Removed unused imports/handlers and `react-leaflet`. Build 0 TS errors, `npm test` 60/60. |
 | 2026-10-12 | **Queens Cargo launch** | See below. |
 
 ### 2026-10-12 Queens Cargo launch
