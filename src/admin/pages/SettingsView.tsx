@@ -1,25 +1,19 @@
 import React, { useState } from 'react';
 import {
-  Settings,
   Building,
   Shield,
-  Eye,
   DollarSign,
   Barcode as BarcodeIcon,
   Server,
   Save,
   CheckCircle2,
   Lock,
-  Globe,
-  Radio,
   MapPin,
   FileText,
   AlertTriangle,
   RotateCcw,
-  Sparkles,
   Phone,
-  Mail,
-  Truck
+  Mail
 } from 'lucide-react';
 import { ADMIN_URL, COMPANY_SHORT, EMAIL, LEGAL_NAME } from '../../config/brand';
 import { useAdminData } from '../../context/AdminDataContext';

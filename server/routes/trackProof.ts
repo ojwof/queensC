@@ -1,5 +1,4 @@
 import { Router, Request, Response } from 'express';
-import crypto from 'crypto';
 import { db } from '../db.js';
 import { TRACKING_ID_EXAMPLE, TRACKING_PREFIX } from '../../src/config/brand.js';
 import { paymentProofLimiter } from '../middleware/rateLimit.js';
